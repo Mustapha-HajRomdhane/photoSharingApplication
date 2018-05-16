@@ -9,6 +9,6 @@ namespace PhotoSharingApp.Model
     public class PhotoSharingContext : System.Data.Entity.DbContext
     {
         public DbSet<Photo> Photos { get; set; }
-        public DbSet<Commentaire> Comments { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }

@@ -6,17 +6,14 @@ using System.Web;
 
 namespace PhotoSharingApp.Model
 {
-    public class Commentaire
+    public class Comment
     {
+
         public int CommentID { get; set; }
         public String User { get; set; }
-        [Required]
-        [StringLength(250)]
         public String Subject { get; set; }
-        [DataType(DataType.MultilineText)]
         public String Body { get; set; }
         public int PhotoID { get; set; }
-        public virtual Photo Photo { get; set; }
-        public void DbSet() { }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

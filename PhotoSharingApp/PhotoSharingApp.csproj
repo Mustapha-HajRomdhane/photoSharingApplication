@@ -114,7 +114,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -154,7 +156,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\PhotoSharingInitializer.cs" />
-    <Compile Include="Model\Commentaire.cs" />
+    <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Photo.cs" />
     <Compile Include="Models\PhotoSharingContext.cs" />
     <Compile Include="Model\User.cs" />

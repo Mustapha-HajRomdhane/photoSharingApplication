@@ -20,10 +20,10 @@ namespace PhotoSharingApp.Model
         public string Description { get; set; }
         [DataType(DataType.DateTime)]
         [DisplayName("Created Date")]
-        [DisplayFormat(DataFormatString ="{0:MM/dd/yy}",ApplyFormatInEditMode =true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
         public DateTime CreatedDate { get; set; }
         public string Owner { get; set; }
-        public virtual ICollection<Commentaire> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
         public string ImageMimeType;
     }
 }
