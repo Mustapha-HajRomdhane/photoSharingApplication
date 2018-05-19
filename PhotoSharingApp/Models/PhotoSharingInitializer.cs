@@ -17,7 +17,7 @@ namespace PhotoSharingApp.Models
             List<Comment> comments = new List<Comment>();
             List<Photo> photo = new List<Photo>();
             Photo ph = new Photo();
-            ph.Title = "Test";
+            ph.Title = "My Photo";
             ph.Description = "Swalallala";
             ph.Owner = "Me";
             ph.PhotoFile = System.IO.File.ReadAllBytes("\\Users\\mustapha.png");

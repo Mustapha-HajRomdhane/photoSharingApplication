@@ -5,9 +5,7 @@
     if (item.PhotoFile != null)
     {
         <img width="200"
-             src="@Url.Action("GetImage",
-"Photo",
-new { id = item.PhotoID })" />
+             src="@Url.Action("GetImage","Photo",new { id = item.PhotoID })" />
 
     }
 

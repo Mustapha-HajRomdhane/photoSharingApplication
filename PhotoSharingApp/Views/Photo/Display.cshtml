@@ -21,7 +21,7 @@
                 @Html.DisplayNameFor(model => model.Title)
                 @if (Model.PhotoFile != null)
                 {
-                    <img width="800" src="@Url.Action("GetImage", "Photo",
+                    <img width="400" src="@Url.Action("GetImage", "Photo",
                                            new { id=Model.PhotoID })" />
                 }
             </dt>
