@@ -20,12 +20,15 @@ namespace PhotoSharingApp.Models
             ph.Title = "Test";
             ph.Description = "Swalallala";
             ph.Owner = "Me";
-            ph.PhotoFile = System.IO.File.ReadAllBytes("\\Users\\Mustapha Haj Romdhan\\photoSharingApplication\\PhotoSharingApp\\Images\\mustapha.png");
-            ph.CreatedDate = DateTime.Now;
+            ph.PhotoFile = System.IO.File.ReadAllBytes("\\Users\\mustapha.png");
+            ph.CreateDate = DateTime.Now;
             ph.ImageMimeType = "image/png";
             photo.Add(ph);
             foreach (Photo p in photo)
+            {
                 context.Photos.Add(p);
+            }
+                
             context.SaveChanges();
             Comment comm = new Comment();
             comm.PhotoID = 1;
@@ -34,7 +37,10 @@ namespace PhotoSharingApp.Models
             comm.Body = "this comment should appear in the photo";
             comments.Add(comm);
             foreach (Comment c in comments)
+            {
                 context.Comments.Add(c);
+            }
+                
             context.SaveChanges();
             base.Seed(context);
         }

@@ -15,10 +15,10 @@ namespace PhotoSharingApp.Controllers
         public ActionResult Index()
         {
             Debug.WriteLine("aaaaaaaa");
-             //Photo photo = new Photo();
+            //Photo photo = new Photo();
             //return photo;
 
-             return View(context.Photos.First<Photo>());
+            return View(context.Photos.First<Photo>());
         }
         public ActionResult Display(int id)
         {
@@ -95,6 +95,22 @@ namespace PhotoSharingApp.Controllers
                 return null;
             }
         }
+        [ChildActionOnly]
+        public ActionResult _PhotoGallery(int number = 0)
+        {
+            List<Photo> photos = new List<Photo>();
+            if (number == 0)
+            {
+                photos = context.Photos.ToList();
+            }
+            else
+            {
+                photos = (from p in context.Photos
+                          orderby p.CreateDate descending
+                          select p).Take(number).ToList();
+            }
+            return PartialView("_PhotoGallery", photos);
+        }
 
     }
-    }
+}

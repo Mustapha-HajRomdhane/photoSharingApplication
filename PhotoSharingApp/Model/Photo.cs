@@ -10,6 +10,10 @@ namespace PhotoSharingApp.Model
 {
     public class Photo
     {
+        public Photo()
+        {
+           
+        }
         public int PhotoID { get; set; }
         [Required]
         public string Title { get; set; }
@@ -18,13 +22,13 @@ namespace PhotoSharingApp.Model
         public Byte[] PhotoFile { get; set; }
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
-        [DataType(DataType.DateTime)]
         [DisplayName("Created Date")]
+        [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreateDate { get; set; }
         public string Owner { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
-        public string ImageMimeType;
-        public DateTime CreateDate { get; set; }
+        public string ImageMimeType { get; set; }
+
     }
 }
