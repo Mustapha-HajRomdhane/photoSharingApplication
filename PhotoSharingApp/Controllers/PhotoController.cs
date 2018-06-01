@@ -23,9 +23,9 @@ namespace PhotoSharingApp.Controllers
         public ActionResult Display(int id)
         {
             List<Photo> photos = context.Photos.ToList();
-            var verif = photos.Find(photo => photo.PhotoID == id);
-            if (verif != null)
-                return View("Display", verif);
+            var pho = photos.Find(photo => photo.PhotoID == id);
+            if (pho != null)
+                return View("Display", pho);
             else
                 return HttpNotFound();
         }
