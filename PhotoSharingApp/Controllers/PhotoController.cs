@@ -6,12 +6,29 @@ using System.Web;
 using System.Web.Mvc;
 using System.Diagnostics;
 using System.Data.Entity;
+using PhotoSharingApp.Models;
 
 namespace PhotoSharingApp.Controllers
 {
+    [HandleError(View = "Error")]
+    [ValueReporter]
     public class PhotoController : System.Web.Mvc.Controller
     {   // GET: Photo
-        private PhotoSharingContext context = new PhotoSharingContext();
+        private IPhotoSharingContext context ;
+
+
+        public PhotoController()
+        {
+            context = new PhotoSharingContext();
+        }
+
+
+        public PhotoController(IPhotoSharingContext Context)
+        {
+            context = Context;
+        }
+
+
         public ActionResult Index()
         {
             Debug.WriteLine("aaaaaaaa");
@@ -22,13 +39,13 @@ namespace PhotoSharingApp.Controllers
         }
         public ActionResult Display(int id)
         {
-            List<Photo> photos = context.Photos.ToList();
-            var pho = photos.Find(photo => photo.PhotoID == id);
-            if (pho != null)
-                return View("Display", pho);
+            Photo verif = context.FindPhotoById(id);
+            if (verif != null)
+                return View("Display", verif);
             else
                 return HttpNotFound();
         }
+  
         public ActionResult Create()
         {
             Photo photo = new Photo();
@@ -46,7 +63,7 @@ namespace PhotoSharingApp.Controllers
                     photo.ImageMimeType = image.ContentType;
                     photo.PhotoFile = new byte[image.ContentLength];
                     image.InputStream.Read(photo.PhotoFile, 0, image.ContentLength);
-                    context.Photos.Add(photo);
+                    context.Add<Photo>(photo);
                     context.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -57,10 +74,10 @@ namespace PhotoSharingApp.Controllers
                 return View("Create", photo);
             }
         }
+
         public ActionResult Delete(int id)
         {
-            List<Photo> photos = context.Photos.ToList();
-            var verif = photos.Find(photo => photo.PhotoID == id);
+            Photo verif = context.FindPhotoById(id);
             if (verif == null)
             {
                 return HttpNotFound();
@@ -74,17 +91,14 @@ namespace PhotoSharingApp.Controllers
         [ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            List<Photo> photos = context.Photos.ToList();
-            var verif = photos.Find(photo => photo.PhotoID == id);
-            context.Entry(verif).State = EntityState.Deleted;
+            Photo verif = context.FindPhotoById(id);
+            context.Delete<Photo>(verif);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
-
         public FileContentResult GetImage(int id)
         {
-            List<Photo> photos = context.Photos.ToList();
-            var verif = photos.Find(photo => photo.PhotoID == id);
+            Photo verif = context.FindPhotoById(id);
             if (verif != null)
             {
 
@@ -94,6 +108,11 @@ namespace PhotoSharingApp.Controllers
             {
                 return null;
             }
+        }
+
+        public ActionResult SlideShow()
+        {
+            throw new NotImplementedException("The SlideShow action is not yet ready");
         }
         [ChildActionOnly]
         public ActionResult _PhotoGallery(int number = 0)
