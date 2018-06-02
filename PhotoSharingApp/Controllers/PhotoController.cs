@@ -110,6 +110,7 @@ namespace PhotoSharingApp.Controllers
             }
         }
 
+
         public ActionResult SlideShow()
         {
             throw new NotImplementedException("The SlideShow action is not yet ready");
